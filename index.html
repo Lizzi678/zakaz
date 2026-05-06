@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>НЕОН 54 | Изготовление вывесок</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo" onclick="location.href='index.html'">НЕОН<span>54</span></div>
+            <nav>
+                <a href="index.html" class="active">Главная</a>
+                <a href="portfolio.html">Работы</a>
+                <a href="news.html">Новости</a>
+                <a href="javascript:void(0)" onclick="toggleOverlay('contactsBlock')">Контакты</a>
+            </nav>
+            <button class="btn-main" onclick="toggleOverlay('orderModal')">Заказать расчет</button>
+        </div>
+    </header>
+
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span>СОБСТВЕННОЕ ПРОИЗВОДСТВО • ГАРАНТИЯ КАЧЕСТВА • МОНТАЖ ЛЮБОЙ СЛОЖНОСТИ • НЕОНОВЫЕ ВЫВЕСКИ НОВОСИБИРСК • </span>
+            <span>СОБСТВЕННОЕ ПРОИЗВОДСТВО • ГАРАНТИЯ КАЧЕСТВА • МОНТАЖ ЛЮБОЙ СЛОЖНОСТИ • НЕОНОВЫЕ ВЫВЕСКИ НОВОСИБИРСК • </span>
+        </div>
+    </div>
+
+    <main class="section">
+        <div class="container">
+            <div class="glass-card">
+                <span style="color:var(--accent); font-weight:700;">Ваш рекламщик из Сибири</span>
+                
+                <h1 style="font-size: 3.5rem;">
+                
+                    Делаем рекламу для вашего бизнеса
+                </h1>
+                
+                <p style="max-width: 600px; font-size: 1.1rem; opacity: 0.8;">Мы создаем уникальные неоновые вывески и объемные буквы в Новосибирске. Собственное производство, гарантия качества и монтаж любой сложности.</p>
+                <br><br>
+                <a href="order.html" class="your-button-class">Рассчитать вывеску</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="contactsBlock" class="overlay">
+        <div class="overlay-content glass-card">
+            <span class="close-x" onclick="toggleOverlay('contactsBlock')">&times;</span>
+            <h2>Наши <span>Контакты</span></h2>
+            <div style="margin-top: 20px;">
+                <p>г. Новосибирск, Центр</p>
+                <a href="tel:+79609023610" style="font-size: 2rem; color: var(--accent); text-decoration: none; font-family: 'Unbounded';">+7 960 902 36 10</a>
+                <p style="margin-top: 20px; opacity: 0.6;">Работаем ежедневно. Звоните или пишите для консультации.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="orderModal" class="overlay">
+        <div class="overlay-content glass-card">
+            <span class="close-x" onclick="toggleOverlay('orderModal')">&times;</span>
+            <h3>Оставить заявку</h3>
+            <form style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                <input type="text" placeholder="Ваше имя" style="padding: 15px; border-radius: 10px; border: 1px solid #333; background: #111; color: #fff;">
+                <input type="tel" placeholder="Номер телефона" style="padding: 15px; border-radius: 10px; border: 1px solid #333; background: #111; color: #fff;">
+                <button type="submit" class="btn-main">Отправить менеджеру</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

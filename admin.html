@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель управления — NEON54</title>
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+        .admin-card { background: #111; border: 1px solid #00f2ff; padding: 20px; border-radius: 15px; max-width: 800px; margin: 0 auto; }
+        .section { margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        h2 { color: #00f2ff; }
+        input, textarea { width: 100%; padding: 10px; margin: 5px 0; background: #000; border: 1px solid #333; color: #fff; border-radius: 5px; }
+        button { background: #00f2ff; color: #000; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; }
+        .item-list { margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="admin-card">
+    <h1>Панель администратора NEON54</h1>
+
+    <div class="section">
+        <h2>💰 Управление ценами</h2>
+        <div id="prices-list">
+            <p>Неоновая вывеска (за м): <input type="number" id="price-neon" value="1500"> руб.</p>
+            <p>Объемные буквы (за см): <input type="number" id="price-letters" value="50"> руб.</p>
+        </div>
+        <button onclick="savePrices()">Обновить цены на сайте</button>
+    </div>
+
+    <div class="section">
+        <h2>🖼 Загрузить работу в портфолио</h2>
+        <input type="text" id="portfolio-title" placeholder="Название работы">
+        <input type="text" id="portfolio-img" placeholder="Ссылка на фото (или выберите файл)">
+        <button onclick="addPortfolio()">Добавить в галерею</button>
+        <div class="item-list" id="portfolio-items"></div>
+    </div>
+
+    <div class="section">
+        <h2>📰 Новости/Акции</h2>
+        <textarea id="news-text" placeholder="Текст новости..."></textarea>
+        <button onclick="postNews()">Опубликовать</button>
+    </div>
+</div>
+
+<script>
+    // Здесь будет логика сохранения в базу данных (Firebase)
+    function savePrices() {
+        const neon = document.getElementById('price-neon').value;
+        const letters = document.getElementById('price-letters').value;
+        alert('Цены обновлены! Теперь на главной странице они изменятся автоматически.');
+        // Тут пойдет код записи в БД
+    }
+
+    function addPortfolio() {
+        const title = document.getElementById('portfolio-title').value;
+        alert('Работа "' + title + '" добавлена в портфолио!');
+    }
+</script>
+
+</body>
+</html>
