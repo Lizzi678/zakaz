@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НЕОН 54 | Изготовление вывесок Новосибирск</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div class="site-wrapper">
+        <header>
+            <div class="container header-inner">
+                <div class="logo" onclick="location.href='index.html'">НЕОН<span>54</span></div>
+                <nav class="nav">
+                    <a href="index.html" class="active">Главная</a>
+                    <a href="portfolio.html">Портфолио</a>
+                    <a href="news.html">Новости</a>
+                    <a href="javascript:void(0)" onclick="toggleOverlay('contactsBlock')">Контакты</a>
+                </nav>
+                <a href="tel:+79991234567" class="btn-call">
+            📞 Позвонить на производство
+        </a>
+    </div>
+</header>
+
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span>МОНТАЖ ЛЮБОЙ СЛОЖНОСТИ • НЕОНОВЫЕ ВЫВЕСКИ НОВОСИБИРСК • СОБСТВЕННОЕ ПРОИЗВОДСТВО • ГАРАНТИЯ КАЧЕСТВА • </span>
+                <span>МОНТАЖ ЛЮБОЙ СЛОЖНОСТИ • НЕОНОВЫЕ ВЫВЕСКИ НОВОСИБИРСК • СОБСТВЕННОЕ ПРОИЗВОДСТВО • ГАРАНТИЯ КАЧЕСТВА • </span>
+            </div>
+        </div>
+
+        <section class="hero-section">
+            <div class="hero-card">
+                <div class="neon-heading">Ваш рекламщик из Сибири</div>
+                <h1 class="hero-title">НЕОН: ДЕЛАЕМ РЕКЛАМУ ДЛЯ ВАШЕГО БИЗНЕСА</h1>
+                <p class="hero-subtitle">
+                    Мы создаем уникальные неоновые вывески и объемные буквы в Новосибирске. 
+                    Собственное производство, гарантия качества и монтаж любой сложности.
+                </p>
+                <a href="quiz.html" class="btn-cyan btn-large">Рассчитать вывеску</a>
+            </div>
+        </section>
+
+        <div id="contactsBlock" class="overlay">
+            <div class="overlay-content glass-card">
+                <span class="close-x" onclick="toggleOverlay('contactsBlock')">&times;</span>
+                <h2>Наши <span>Контакты</span></h2>
+                <div style="margin-top: 20px;">
+                    <p style="margin-bottom: 10px;">г. Новосибирск, Центр</p>
+                    <a href="tel:+79609023610" style="font-size: 1.8rem; color: var(--accent-cyan); text-decoration: none; font-family: 'Montserrat'; font-weight: 700;">+7 960 902 36 10</a>
+                    <p style="margin-top: 20px; opacity: 0.6; font-size: 0.9rem;">Работаем ежедневно. Звоните или пишите для консультации.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.toggleOverlay = function(id) {
+                const el = document.getElementById(id);
+                if (el) el.style.display = (window.getComputedStyle(el).display === 'none') ? 'flex' : 'none';
+            };
+
+            // Canvas частицы
+            const canvas = document.getElementById('canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+
+                class Particle {
+                    constructor(x, y) {
+                        this.x = x; this.y = y; this.size = 2; this.alpha = 1;
+                        this.alphaStep = 1 / 50;
+                    }
+                    update() { this.size = Math.max(0.1, this.size * 0.98); this.alpha -= this.alphaStep; }
+                    draw() {
+                        ctx.save();
+                        ctx.globalAlpha = this.alpha;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fillStyle = '#00f2ff';
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = '#00f2ff';
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                }
+
+                window.addEventListener('mousemove', (e) => {
+                    for (let i = 0; i < 2; i++) particles.push(new Particle(e.clientX, e.clientY));
+                });
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach((p, i) => {
+                        p.update(); p.draw();
+                        if (p.alpha <= 0) particles.splice(i, 1);
+                    });
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+        });
+    </script>
+</body>
+</html>
